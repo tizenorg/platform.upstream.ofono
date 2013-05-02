@@ -6,7 +6,7 @@ Summary:        Open Source Telephony
 Url:            http://ofono.org
 Group:          Telephony/Cellular
 Source0:        %{name}-%{version}.tar.bz2
-
+Source1012:     ofono.manifest
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  libtool
@@ -16,9 +16,14 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(libudev) >= 145
 BuildRequires:  pkgconfig(mobile-broadband-provider-info)
 Requires:       dbus
+Requires:       systemd
+Requires(post):   systemd
+Requires(preun):  systemd
+Requires(postun): systemd
+
 
 %description
-Oprn Source Telephony stack.
+Open Source Telephony stack.
 
 %package devel
 Summary:        Headers for oFono
@@ -42,12 +47,14 @@ Scripts for testing oFono and its functionality
 %prep
 %setup -q
 
+cp %{SOURCE1012} .
+
 %build
 autoreconf --force --install
 
 %configure --disable-static \
     --enable-test \
-    --with-systemdunitdir="/usr/lib/systemd/system"
+    --with-systemdunitdir=%{_unitdir}
 
 make %{?_smp_mflags}
 
@@ -57,13 +64,17 @@ make %{?_smp_mflags}
 mkdir -p %{buildroot}%{_prefix}/lib/systemd/system/network.target.wants
 ln -s ../ofono.service %{buildroot}%{_prefix}/lib/systemd/system/network.target.wants/ofono.service
 
+%install_service multi-user.target.wants ofono.service
+
 %docs_package
 
 %files
-%config(noreplace) %{_sysconfdir}/dbus-1/system.d/*.conf
+%manifest ofono.manifest
+%config %{_sysconfdir}/dbus-1/system.d/*.conf
 %{_sbindir}/*
-%{_prefix}/lib/systemd/system/network.target.wants/ofono.service
-%{_prefix}/lib/systemd/system/ofono.service
+%{_unitdir}/network.target.wants/ofono.service
+%{_unitdir}/ofono.service
+%{_unitdir}/multi-user.target.wants/ofono.service
 %config %{_sysconfdir}/ofono/phonesim.conf
 
 %files devel
