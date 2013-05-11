@@ -1,3 +1,6 @@
+* Sat May 11 2013 Anas Nashif <anas.nashif@intel.com> submit/tizen/20130509.182621@8f8d18e
+- Set license using %license
+
 * Wed Feb 13 2013 Anas Nashif <anas.nashif@intel.com> 1.12@65a2fb2
 - Initial packaging
 
