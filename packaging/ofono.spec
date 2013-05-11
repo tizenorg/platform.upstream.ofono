@@ -69,6 +69,7 @@ ln -s ../ofono.service %{buildroot}%{_prefix}/lib/systemd/system/network.target.
 %docs_package
 
 %files
+%license COPYING
 %manifest ofono.manifest
 %config %{_sysconfdir}/dbus-1/system.d/*.conf
 %{_sbindir}/*
