@@ -69,6 +69,7 @@ ln -s ../ofono.service %{buildroot}%{_prefix}/lib/systemd/system/network.target.
 %docs_package
 
 %files
+%manifest %{name}.manifest
 %license COPYING
 %manifest ofono.manifest
 %config %{_sysconfdir}/dbus-1/system.d/*.conf
@@ -79,9 +80,11 @@ ln -s ../ofono.service %{buildroot}%{_prefix}/lib/systemd/system/network.target.
 %config %{_sysconfdir}/ofono/phonesim.conf
 
 %files devel
+%manifest %{name}.manifest
 %{_includedir}/ofono/*.h
 %{_libdir}/pkgconfig/ofono.pc
 
 %files test
+%manifest %{name}.manifest
 %{_libdir}/%{name}/test/*
 
