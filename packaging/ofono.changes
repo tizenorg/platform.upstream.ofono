@@ -1,3 +1,6 @@
+* Fri Nov 22 2013 Ravi kumar Veeramally <ravikumar.veeramally@linux.intel.com> 1.13@9be2fb1
+- Upgraded to 1.13
+
 * Sat May 11 2013 Anas Nashif <anas.nashif@intel.com> submit/tizen/20130509.182621@8f8d18e
 - Set license using %license
 
