@@ -54,6 +54,7 @@ autoreconf --force --install
 
 %configure --disable-static \
     --enable-test \
+    --disable-bluez4 \
     --with-systemdunitdir=%{_unitdir}
 
 make %{?_smp_mflags}
