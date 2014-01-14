@@ -7,6 +7,7 @@ Type=dbus
 BusName=org.ofono
 ExecStart=@prefix@/sbin/ofonod -n
 StandardError=null
+SmackExecLabel=User
 
 [Install]
 WantedBy=multi-user.target
