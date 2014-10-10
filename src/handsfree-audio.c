@@ -736,6 +736,8 @@ static DBusMessage *am_agent_register(DBusConnection *conn,
 			return __ofono_error_invalid_args(msg);
 	}
 
+	has_msbc = FALSE;
+
 	DBG("Agent %s registered with the CODECs:%s%s", sender,
 		has_cvsd ? " CVSD" : "", has_msbc ? " mSBC" : "");
 
