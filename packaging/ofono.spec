@@ -62,9 +62,8 @@ make %{?_smp_mflags}
 %install
 %make_install
 
-mkdir -p %{buildroot}%{_prefix}/lib/systemd/system/network.target.wants
-ln -s ../ofono.service %{buildroot}%{_prefix}/lib/systemd/system/network.target.wants/ofono.service
 
+%install_service network.target.wants ofono.service
 %install_service multi-user.target.wants ofono.service
 
 %docs_package
